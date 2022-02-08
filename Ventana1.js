@@ -33,7 +33,7 @@ export default class Ventana1 extends Component {
         <Text style={styles.Texto}>{this.state.Name}</Text>
         <Image
           style={styles.Img}
-          source={require('./Imagenes/Face.png')}></Image>
+          source={require('./Imagenes/Face2.png')}></Image>
         <Text style={styles.Texto}>Edad</Text>
         <Text style={styles.Texto}>{this.state.Age}</Text>
 
