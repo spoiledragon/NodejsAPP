@@ -22,7 +22,7 @@ export default class Ventana2 extends Component {
       <View>
         <ImageBackground
           source={{
-            uri: 'https://p4.wallpaperbetter.com/wallpaper/100/279/758/stardew-valley-moon-landscape-pixel-art-hd-wallpaper-preview.jpg',
+            uri: 'https://image.winudf.com/v2/image1/Y29tLm1pbmltYWxpc3Qud2FsbHBhcGVyX3NjcmVlbl8wXzE1NzY5NDM4ODFfMDMz/screen-0.jpg?fakeurl=1&type=.jpg',
           }}
           style={styles.bg}>
           <Text style={styles.tlogin}>Log In </Text>
@@ -31,7 +31,7 @@ export default class Ventana2 extends Component {
             style={styles.avatar}
             size={200}
             rounded
-            source={require('./Imagenes/Face.png')}
+            source={require('./Imagenes/udg.jpg')}
           />
 
           <View style={styles.inputs}>
@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('screen').height,
   },
   tlogin: {
+    
     marginTop:20,
     fontSize: 40,
     fontWeight: '500',
