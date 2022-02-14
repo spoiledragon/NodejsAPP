@@ -25,7 +25,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import VENTANA1 from './Ventana2';
+import VENTANA1 from './Menu';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';

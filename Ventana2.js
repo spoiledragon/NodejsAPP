@@ -9,8 +9,10 @@ import {
 import React, {Component} from 'react';
 import {Avatar} from 'react-native-elements';
 import {Input, Icon, Button, Divider} from 'react-native-elements';
+import { NavigationContext } from '@react-navigation/native';
 
 export default class Ventana2 extends Component {
+  static contextType = NavigationContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -18,6 +20,10 @@ export default class Ventana2 extends Component {
     };
   }
   render() {
+    const navigation = this.context;
+    const btnLogin=() =>{
+      navigation.navigate("Register")
+    }
     return (
       <View>
         <ImageBackground
@@ -70,7 +76,7 @@ export default class Ventana2 extends Component {
               width: 200,
               marginHorizontal: 100,
               marginVertical: 10,
-            }}
+            }}onPress={btnLogin}
           />
         </ImageBackground>
       </View>
