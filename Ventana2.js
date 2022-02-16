@@ -9,21 +9,39 @@ import {
 import React, {Component} from 'react';
 import {Avatar} from 'react-native-elements';
 import {Input, Icon, Button, Divider} from 'react-native-elements';
-import { NavigationContext } from '@react-navigation/native';
+import {NavigationContext} from '@react-navigation/native';
 
 export default class Ventana2 extends Component {
   static contextType = NavigationContext;
   constructor(props) {
     super(props);
     this.state = {
-      Name: 'no',
+      tuser: '',
+      tpassword: '',
     };
   }
   render() {
     const navigation = this.context;
-    const btnLogin=() =>{
-      navigation.navigate("Register")
-    }
+    const btnRegister = () => {
+      navigation.navigate('Register');
+    };
+
+    const btnLogin = () => {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          // Typical action to be performed when the document is ready:
+          //aqui es que nos contesto el server
+          console.log(xhttp.responseText);
+        }
+      };
+      xhttp.open(
+        'GET',
+        'https://spoiledragon.000webhostapp.com/Temporal.php?user='+this.state.tuser+'&password='+this.state.tpassword,
+        true,
+      );
+      xhttp.send();
+    };
     return (
       <View>
         <ImageBackground
@@ -42,6 +60,7 @@ export default class Ventana2 extends Component {
 
           <View style={styles.inputs}>
             <Input
+              onChangeText={tuser => this.setState({tuser})}
               placeholder="User"
               leftIcon={<Icon name="person" size={34} color="white" />}
             />
@@ -49,6 +68,7 @@ export default class Ventana2 extends Component {
 
           <View style={styles.inputs}>
             <Input
+              onChangeText={tpassword => this.setState({tpassword})}
               placeholder="Password"
               secureTextEntry={true}
               leftIcon={<Icon name="lock" size={34} color="white" />}
@@ -76,7 +96,33 @@ export default class Ventana2 extends Component {
               width: 200,
               marginHorizontal: 100,
               marginVertical: 10,
-            }}onPress={btnLogin}
+            }}
+            onPress={btnLogin}
+          />
+
+          <Button
+            title="Registro"
+            icon={{
+              name: 'water',
+              type: 'font-awesome',
+              size: 15,
+              color: 'white',
+            }}
+            iconRight
+            iconContainerStyle={{marginLeft: 10}}
+            titleStyle={{fontWeight: '700'}}
+            buttonStyle={{
+              backgroundColor: 'black',
+              borderColor: 'transparent',
+              borderWidth: 0,
+              borderRadius: 30,
+            }}
+            containerStyle={{
+              width: 200,
+              marginHorizontal: 100,
+              marginVertical: 10,
+            }}
+            onPress={btnRegister}
           />
         </ImageBackground>
       </View>
@@ -90,8 +136,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('screen').height,
   },
   tlogin: {
-    
-    marginTop:20,
+    marginTop: 20,
     fontSize: 40,
     fontWeight: '500',
     color: 'white',
