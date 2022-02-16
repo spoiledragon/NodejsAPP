@@ -45,17 +45,15 @@ export default class Ventana2 extends Component {
     return (
       <View>
         <ImageBackground
-          source={{
-            uri: 'https://image.winudf.com/v2/image1/Y29tLm1pbmltYWxpc3Qud2FsbHBhcGVyX3NjcmVlbl8wXzE1NzY5NDM4ODFfMDMz/screen-0.jpg?fakeurl=1&type=.jpg',
-          }}
+          source={require('./Imagenes/background.png')}
           style={styles.bg}>
           <Text style={styles.tlogin}>Log In </Text>
 
-          <Avatar
+          <Image
             style={styles.avatar}
             size={200}
             rounded
-            source={require('./Imagenes/udg.jpg')}
+            source={require('./Imagenes/logo.png')}
           />
 
           <View style={styles.inputs}>
