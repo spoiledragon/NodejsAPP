@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 import {
   Text,
   View,
@@ -8,7 +9,7 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
-  StatusBar,
+  ToastAndroid,
 } from 'react-native';
 
 import {Input, Icon, Button, Divider} from 'react-native-elements';
@@ -28,28 +29,57 @@ export default class Registro extends Component {
 
   render() {
     const btnRegister = () => {
-      console.log('si');
+      console.log(
+        this.state.iname,
+        this.state.icode,
+        this.state.ipassword,
+        this.state.itelephone,
+        this.state.imail,
+        this.state.ischool,
+        this.state.isemester,
+      );
+      //mausque herramienta que nos servira mas tarde
+      /*
+         var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          // Typical action to be performed when the document is ready:
+          //aqui es que nos contesto el server
+          console.log(xhttp.responseText);
+        }
+      };
+      xhttp.open(
+        'GET',
+        'https://spoiledragon.000webhostapp.com/Temporal.php?user='+this.state.tuser+'&password='+this.state.tpassword,
+        true,
+      );
+      xhttp.send();
+      */
+      showToastWithGravity();
+    };
+
+    const showToastWithGravity = () => {
+      ToastAndroid.showWithGravity(
+        'Registrado con Amor',
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+      );
     };
     return (
-      <SafeAreaView>
-        <ScrollView style={styles.scrollView}>
-          <View>
-            <ImageBackground
-              style={styles.bg}
-              source={require('./Imagenes/background.png')}>
-              
-                <Image
-                  style={styles.avatar}
-                  size={200}
-                  rounded
-                  source={require('./Imagenes/logo.png')}
-                />
-              
+      <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.slider} showsVerticalScrollIndicator={false}>
+          <ImageBackground
+            style={styles.bg}
+            source={require('./Imagenes/background.png')}>
+            <View style={styles.trans}>
+              <View style={styles.spacer}></View>
+
               <View style={styles.inputs}>
                 <Text style={styles.text}>Name</Text>
                 <Input
                   onChangeText={iname => this.setState({iname})}
                   //placeholder="Name"
+                  inputStyle={{color: 'white'}}
                   leftIcon={<Icon name="person" size={30} color="white" />}
                 />
               </View>
@@ -58,6 +88,7 @@ export default class Registro extends Component {
                 <Input
                   onChangeText={icode => this.setState({icode})}
                   //placeholder="Code"
+                  inputStyle={{color: 'white'}}
                   leftIcon={<Icon name="code" size={30} color="white" />}
                 />
               </View>
@@ -66,6 +97,7 @@ export default class Registro extends Component {
                 <Input
                   onChangeText={ipassword => this.setState({ipassword})}
                   //placeholder="Password"
+                  inputStyle={{color: 'white'}}
                   secureTextEntry={true}
                   leftIcon={<Icon name="lock" size={30} color="white" />}
                 />
@@ -75,6 +107,7 @@ export default class Registro extends Component {
                 <Input
                   onChangeText={itelephone => this.setState({itelephone})}
                   //placeholder="Telephone"
+                  inputStyle={{color: 'white'}}
                   leftIcon={<Icon name="phone" size={30} color="white" />}
                 />
               </View>
@@ -83,6 +116,7 @@ export default class Registro extends Component {
                 <Input
                   onChangeText={imail => this.setState({imail})}
                   //placeholder="Mail"
+                  inputStyle={{color: 'white'}}
                   leftIcon={<Icon name="mail" size={30} color="white" />}
                 />
               </View>
@@ -91,14 +125,17 @@ export default class Registro extends Component {
                 <Input
                   onChangeText={ischool => this.setState({ischool})}
                   //placeholder="School"
+                  inputStyle={{color: 'white'}}
                   leftIcon={<Icon name="school" size={30} color="white" />}
                 />
               </View>
+
               <View style={styles.inputs}>
                 <Text style={styles.text}>Semester</Text>
                 <Input
                   onChangeText={isemester => this.setState({isemester})}
                   //placeholder="Semester"
+                  inputStyle={{color: 'white'}}
                   leftIcon={<Icon name="grade" size={30} color="white" />}
                 />
               </View>
@@ -128,8 +165,8 @@ export default class Registro extends Component {
                   onPress={btnRegister}
                 />
               </View>
-            </ImageBackground>
-          </View>
+            </View>
+          </ImageBackground>
         </ScrollView>
       </SafeAreaView>
     );
@@ -149,10 +186,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   inputs: {
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 7,
+    marginBottom: 7,
     width: 350,
-    background: (0, 0, 0, 0.5),
     marginLeft: 20,
     marginRight: 20,
   },
@@ -170,8 +206,13 @@ const styles = StyleSheet.create({
     marginLeft: 100,
     marginBottom: 40,
   },
-  scrollView: {
-    backgroundColor: 'pink',
-    marginHorizontal: 20,
+  slider: {
+    backgroundColor: 'black',
+  },
+  spacer: {
+    marginTop: 30,
+  },
+  trans: {
+    backgroundColor: 'rgba(10,0,0,.5)',
   },
 });

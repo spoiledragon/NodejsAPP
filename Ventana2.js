@@ -60,6 +60,7 @@ export default class Ventana2 extends Component {
             <Input
               onChangeText={tuser => this.setState({tuser})}
               placeholder="User"
+              inputStyle={{color: 'white'}} 
               leftIcon={<Icon name="person" size={34} color="white" />}
             />
           </View>
@@ -69,6 +70,7 @@ export default class Ventana2 extends Component {
               onChangeText={tpassword => this.setState({tpassword})}
               placeholder="Password"
               secureTextEntry={true}
+              inputStyle={{color: 'white'}} 
               leftIcon={<Icon name="lock" size={34} color="white" />}
             />
           </View>
@@ -101,8 +103,8 @@ export default class Ventana2 extends Component {
           <Button
             title="Registro"
             icon={{
-              name: 'water',
-              type: 'font-awesome',
+              name: 'add',
+              type: 'evilicons',
               size: 15,
               color: 'white',
             }}
