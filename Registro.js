@@ -37,6 +37,7 @@ export default class Registro extends Component {
         this.state.imail,
         this.state.ischool,
         this.state.isemester,
+        
       );
       //mausque herramienta que nos servira mas tarde
       /*
@@ -69,6 +70,7 @@ export default class Registro extends Component {
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.slider} showsVerticalScrollIndicator={false}>
           <ImageBackground
+          
             style={styles.bg}
             source={require('./Imagenes/background.png')}>
             <View style={styles.trans}>
@@ -186,8 +188,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   inputs: {
-    marginTop: 7,
-    marginBottom: 7,
+    marginTop: 5,
+    marginBottom: 5,
     width: 350,
     marginLeft: 20,
     marginRight: 20,
@@ -208,9 +210,6 @@ const styles = StyleSheet.create({
   },
   slider: {
     backgroundColor: 'black',
-  },
-  spacer: {
-    marginTop: 30,
   },
   trans: {
     backgroundColor: 'rgba(10,0,0,.5)',

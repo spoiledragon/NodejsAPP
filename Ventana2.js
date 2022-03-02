@@ -4,7 +4,7 @@ import {
   ImageBackground,
   StyleSheet,
   Dimensions,
-  Image,
+  Image,Alert
 } from 'react-native';
 import React, {Component} from 'react';
 import {Avatar} from 'react-native-elements';
@@ -30,16 +30,29 @@ export default class Ventana2 extends Component {
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
+
           // Typical action to be performed when the document is ready:
           //aqui es que nos contesto el server
           console.log(xhttp.responseText);
+          if(xhttp.responseText==0){
+            console.log("bienvenido");
+            //usuario autentificadoy
+          }if (xhttp.responseText==1){
+            //usuario o contraseña incorrecta
+            Alert.alert("Error","Usario no Encontrado",[{text:"OK",onPress:()=>console.log("Usuario Invalido")}])
+          }if(xhttp.responseText==2){
+            //usuario no existe
+            Alert.alert("Error","Usario no Encontrado",[{text:"OK",onPress:()=>console.log("Usuario Invalido")}])
+          }
         }
       };
       xhttp.open(
         'GET',
-        'https://spoiledragon.000webhostapp.com/Temporal.php?user='+this.state.tuser+'&password='+this.state.tpassword,
+        'https://spoiledragon.000webhostapp.com/Login.php?cod='+this.state.tuser+'&pass='+this.state.tpassword,
+
         true,
       );
+      console.log('https://spoiledragon.000webhostapp.com/Login.php?cod='+this.state.tuser+'&pass='+this.state.tpassword);
       xhttp.send();
     };
     return (
@@ -60,6 +73,7 @@ export default class Ventana2 extends Component {
             <Input
               onChangeText={tuser => this.setState({tuser})}
               placeholder="User"
+              keyboardType='number-pad'
               inputStyle={{color: 'white'}} 
               leftIcon={<Icon name="person" size={34} color="white" />}
             />
