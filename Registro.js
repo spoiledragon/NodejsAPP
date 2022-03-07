@@ -24,6 +24,7 @@ export default class Registro extends Component {
       isemester: '',
       ischool: '',
       itelephone: '',
+      Codigo: '',
     };
   }
 
@@ -37,26 +38,68 @@ export default class Registro extends Component {
         this.state.imail,
         this.state.ischool,
         this.state.isemester,
-        
       );
-      //mausque herramienta que nos servira mas tarde
-      /*
-         var xhttp = new XMLHttpRequest();
+      var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           // Typical action to be performed when the document is ready:
           //aqui es que nos contesto el server
           console.log(xhttp.responseText);
+          if (xhttp.responseText == 0) {
+            console.log('No Se Registro');
+            //usuario autentificadoy
+            this.setState.Codigo = 'Error de Registro';
+            showToastWithGravity();
+          }
+          if (xhttp.responseText == 1) {
+            //usuario o contraseña incorrecta
+            console.log('Registrado Con Exito');
+            this.setState.Codigo = 'Registrado Con Exito';
+            showToastWithGravity();
+          }
+          if (xhttp.responseText == 2) {
+            //usuario YA existe
+            console.log('Usuario Ya Registrado');
+            this.setState.Codigo = 'Registrado YA Registrado';
+            showToastWithGravity();
+          }
         }
       };
       xhttp.open(
+        //Register.php?name=Pepe&code=0000000002&pass=pepe123&tel=1010101010&mail=pepe.furry@gmail.com&school=cucea&semester=segundo
         'GET',
-        'https://spoiledragon.000webhostapp.com/Temporal.php?user='+this.state.tuser+'&password='+this.state.tpassword,
-        true,
+        'https://spoiledragon.000webhostapp.com/Register.php?name=' +
+          this.state.iname +
+          '&code=' +
+          this.state.icode +
+          '&pass=' +
+          this.state.ipassword +
+          '&tel=' +
+          this.state.itelephone +
+          '&mail=' +
+          this.state.imail +
+          '&school=' +
+          this.state.ischool +
+          '&semester=' +
+          this.state.isemester,
+      );
+      console.log(
+        'https://spoiledragon.000webhostapp.com/Register.php?name=' +
+          this.state.iname +
+          '&code=' +
+          this.state.icode +
+          '&pass=' +
+          this.state.ipassword +
+          '&tel=' +
+          this.state.itelephone +
+          '&mail=' +
+          this.state.imail +
+          '&school=' +
+          this.state.ischool +
+          '&semester=' +
+          this.state.isemester,
       );
       xhttp.send();
-      */
-      showToastWithGravity();
     };
 
     const showToastWithGravity = () => {
@@ -70,73 +113,67 @@ export default class Registro extends Component {
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.slider} showsVerticalScrollIndicator={false}>
           <ImageBackground
-          
             style={styles.bg}
             source={require('./Imagenes/background.png')}>
             <View style={styles.trans}>
               <View style={styles.spacer}></View>
 
               <View style={styles.inputs}>
-                <Text style={styles.text}>Name</Text>
                 <Input
                   onChangeText={iname => this.setState({iname})}
-                  //placeholder="Name"
+                  placeholder="Name"
                   inputStyle={{color: 'white'}}
                   leftIcon={<Icon name="person" size={30} color="white" />}
                 />
               </View>
               <View style={styles.inputs}>
-                <Text style={styles.text}>Code</Text>
                 <Input
                   onChangeText={icode => this.setState({icode})}
-                  //placeholder="Code"
+                  placeholder="Code"
                   inputStyle={{color: 'white'}}
+                  keyboardType="number-pad"
                   leftIcon={<Icon name="code" size={30} color="white" />}
                 />
               </View>
               <View style={styles.inputs}>
-                <Text style={styles.text}>Password</Text>
                 <Input
                   onChangeText={ipassword => this.setState({ipassword})}
-                  //placeholder="Password"
+                  placeholder="Password"
                   inputStyle={{color: 'white'}}
                   secureTextEntry={true}
                   leftIcon={<Icon name="lock" size={30} color="white" />}
                 />
               </View>
               <View style={styles.inputs}>
-                <Text style={styles.text}>Telephone</Text>
                 <Input
                   onChangeText={itelephone => this.setState({itelephone})}
-                  //placeholder="Telephone"
+                  placeholder="Telephone"
                   inputStyle={{color: 'white'}}
+                  keyboardType="number-pad"
                   leftIcon={<Icon name="phone" size={30} color="white" />}
                 />
               </View>
               <View style={styles.inputs}>
-                <Text style={styles.text}>Mail</Text>
                 <Input
                   onChangeText={imail => this.setState({imail})}
-                  //placeholder="Mail"
+                  placeholder="Mail"
                   inputStyle={{color: 'white'}}
                   leftIcon={<Icon name="mail" size={30} color="white" />}
                 />
               </View>
               <View style={styles.inputs}>
-                <Text style={styles.text}>School</Text>
                 <Input
                   onChangeText={ischool => this.setState({ischool})}
-                  //placeholder="School"
+                  placeholder="School"
                   inputStyle={{color: 'white'}}
                   leftIcon={<Icon name="school" size={30} color="white" />}
                 />
               </View>
 
               <View style={styles.inputs}>
-                <Text style={styles.text}>Semester</Text>
                 <Input
                   onChangeText={isemester => this.setState({isemester})}
-                  //placeholder="Semester"
+                  placeholder="Semester"
                   inputStyle={{color: 'white'}}
                   leftIcon={<Icon name="grade" size={30} color="white" />}
                 />
@@ -214,4 +251,7 @@ const styles = StyleSheet.create({
   trans: {
     backgroundColor: 'rgba(10,0,0,.5)',
   },
+  spacer:{
+    marginTop:30,
+  }
 });
