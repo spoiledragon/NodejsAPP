@@ -10,11 +10,13 @@ import {
   SafeAreaView,
   ScrollView,
   ToastAndroid,
+  Keyboard,
   
 } from 'react-native';
 
 import {Input, Icon, Button, Picker} from 'react-native-elements';
 export default class Registro extends Component {
+  static contextType = NavigationContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +31,11 @@ export default class Registro extends Component {
   }
 
   render() {
+    const navigation = this.context;
+    
+
     const validate = (a, b, c, d, e, f, g) => {
+      Keyboard.dismiss();
       if (a == '') {
         console.log('A');
         return false;
@@ -106,6 +112,7 @@ export default class Registro extends Component {
               //Usuario Registrado con Exito
               console.log('Registrado Con Exito');
               showToastWithGravity('Registrado Con Exito');
+              navigation.navigate('Login');
             }
             if (xhttp.responseText == 2) {
               //usuario YA existe
@@ -149,7 +156,6 @@ export default class Registro extends Component {
             this.state.isemester,
         );
         xhttp.send();
-        navigation.navigate('Login');
         
       } else {
         showToastWithGravity("Faltan Campos por llenar");

@@ -9,6 +9,7 @@ import {
 import React, {Component} from 'react';
 import {Input, Icon, Button, Divider} from 'react-native-elements';
 import {NavigationContext} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 
 export default class Ventana2 extends Component {
   static contextType = NavigationContext;
