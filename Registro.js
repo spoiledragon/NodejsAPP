@@ -24,7 +24,6 @@ export default class Registro extends Component {
       isemester: '',
       ischool: '',
       itelephone: '',
-      Codigo: '',
     };
   }
 
@@ -40,6 +39,7 @@ export default class Registro extends Component {
         this.state.isemester,
       );
       var xhttp = new XMLHttpRequest();
+
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           // Typical action to be performed when the document is ready:
@@ -47,21 +47,19 @@ export default class Registro extends Component {
           console.log(xhttp.responseText);
           if (xhttp.responseText == 0) {
             console.log('No Se Registro');
-            //usuario autentificadoy
+            //No se Registro
             this.setState.Codigo = 'Error de Registro';
-            showToastWithGravity();
+            showToastWithGravity('Error de Registro');
           }
           if (xhttp.responseText == 1) {
-            //usuario o contraseña incorrecta
+            //Usuario Registrado con Exito
             console.log('Registrado Con Exito');
-            this.setState.Codigo = 'Registrado Con Exito';
-            showToastWithGravity();
+            showToastWithGravity('Registrado Con Exito');
           }
           if (xhttp.responseText == 2) {
             //usuario YA existe
             console.log('Usuario Ya Registrado');
-            this.setState.Codigo = 'Registrado YA Registrado';
-            showToastWithGravity();
+            showToastWithGravity("Usuario Ya Registrado");
           }
         }
       };
@@ -102,9 +100,9 @@ export default class Registro extends Component {
       xhttp.send();
     };
 
-    const showToastWithGravity = () => {
+    const showToastWithGravity = (mensaje) => {
       ToastAndroid.showWithGravity(
-        'Registrado con Amor',
+        mensaje,
         ToastAndroid.SHORT,
         ToastAndroid.CENTER,
       );
