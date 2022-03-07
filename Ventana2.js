@@ -7,7 +7,6 @@ import {
   Image,Alert
 } from 'react-native';
 import React, {Component} from 'react';
-import {Avatar} from 'react-native-elements';
 import {Input, Icon, Button, Divider} from 'react-native-elements';
 import {NavigationContext} from '@react-navigation/native';
 
@@ -37,12 +36,13 @@ export default class Ventana2 extends Component {
           if(xhttp.responseText==0){
             console.log("bienvenido");
             //usuario autentificadoy
+            navigation.navigate('Main');
           }if (xhttp.responseText==1){
             //usuario o contraseña incorrecta
-            Alert.alert("Error","Usario no Encontrado",[{text:"OK",onPress:()=>console.log("Usuario Invalido")}])
+            Alert.alert("Error","Usario no Encontrado",[{text:"OK",onPress:()=>console.log("Usuario O CONTRASEÑA INVALIDA")}])
           }if(xhttp.responseText==2){
             //usuario no existe
-            Alert.alert("Error","Usario no Encontrado",[{text:"OK",onPress:()=>console.log("Usuario Invalido")}])
+            Alert.alert("Error","Usuario No Existe",[{text:"OK",onPress:()=>console.log("Usuario NO EXISTE")}])
           }
         }
       };
@@ -72,7 +72,7 @@ export default class Ventana2 extends Component {
           <View style={styles.inputs}>
             <Input
               onChangeText={tuser => this.setState({tuser})}
-              placeholder="User"
+              placeholder="Code"
               keyboardType='number-pad'
               inputStyle={{color: 'white'}} 
               leftIcon={<Icon name="person" size={34} color="white" />}

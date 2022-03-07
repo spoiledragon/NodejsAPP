@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import {NavigationContext} from '@react-navigation/native';
 import {
   Text,
   View,
@@ -10,10 +10,10 @@ import {
   SafeAreaView,
   ScrollView,
   ToastAndroid,
-
+  
 } from 'react-native';
 
-import {Input, Icon, Button,Picker} from 'react-native-elements';
+import {Input, Icon, Button, Picker} from 'react-native-elements';
 export default class Registro extends Component {
   constructor(props) {
     super(props);
@@ -29,6 +29,42 @@ export default class Registro extends Component {
   }
 
   render() {
+    const validate = (a, b, c, d, e, f, g) => {
+      if (a == '') {
+        console.log('A');
+        return false;
+      }
+      if (b == '') {
+        console.log('B');
+        return false;
+      }
+
+      if (c == '') {
+        console.log('C');
+        return false;
+      }
+      if (d == '') {
+        console.log('D');
+        return false;
+      }
+
+      if (e == '') {
+        console.log('E');
+        return false;
+      }
+      if (f == '') {
+        console.log('F');
+        return false;
+      }
+
+      if (g == '') {
+        console.log('G');
+        return false;
+      }
+
+      return true;
+    };
+
     const btnRegister = () => {
       console.log(
         this.state.iname,
@@ -38,68 +74,86 @@ export default class Registro extends Component {
         this.state.imail,
         this.state.ischool,
         this.state.isemester,
-        
       );
-      var xhttp = new XMLHttpRequest();
 
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          // Typical action to be performed when the document is ready:
-          //aqui es que nos contesto el server
-          console.log(xhttp.responseText);
-          if (xhttp.responseText == 0) {
-            console.log('No Se Registro');
-            //No se Registro
-            this.setState.Codigo = 'Error de Registro';
-            showToastWithGravity('Error de Registro');
-          }
-          if (xhttp.responseText == 1) {
-            //Usuario Registrado con Exito
-            console.log('Registrado Con Exito');
-            showToastWithGravity('Registrado Con Exito');
-          }
-          if (xhttp.responseText == 2) {
-            //usuario YA existe
-            console.log('Usuario Ya Registrado');
-            showToastWithGravity('Usuario Ya Registrado');
-          }
-        }
-      };
-      xhttp.open(
-        //Register.php?name=Pepe&code=0000000002&pass=pepe123&tel=1010101010&mail=pepe.furry@gmail.com&school=cucea&semester=segundo
-        'GET',
-        'https://spoiledragon.000webhostapp.com/Register.php?name=' +
-          this.state.iname +
-          '&code=' +
-          this.state.icode +
-          '&pass=' +
-          this.state.ipassword +
-          '&tel=' +
-          this.state.itelephone +
-          '&mail=' +
-          this.state.imail +
-          '&school=' +
-          this.state.ischool +
-          '&semester=' +
+      if (
+        validate(
+          this.state.iname,
+          this.state.icode,
+          this.state.ipassword,
+          this.state.itelephone,
+          this.state.imail,
+          this.state.ischool,
           this.state.isemester,
-      );
-      console.log(
-        'https://spoiledragon.000webhostapp.com/Register.php?name=' +
-          this.state.iname +
-          '&code=' +
-          this.state.icode +
-          '&pass=' +
-          this.state.ipassword +
-          '&tel=' +
-          this.state.itelephone +
-          '&mail=' +
-          this.state.imail +
-          '&school=' +
-          this.state.ischool +
-          '&semester=' +
-          this.state.isemester,
-      );
-      xhttp.send();
+        )
+      ) {
+        console.log('Si es Valido');
+        //aqui se hace toda la funcion
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+            //aqui es que nos contesto el server
+            console.log(xhttp.responseText);
+            if (xhttp.responseText == 0) {
+              console.log('No Se Registro');
+              //No se Registro
+              this.setState.Codigo = 'Error de Registro';
+              showToastWithGravity('Error de Registro');
+            }
+            if (xhttp.responseText == 1) {
+              //Usuario Registrado con Exito
+              console.log('Registrado Con Exito');
+              showToastWithGravity('Registrado Con Exito');
+            }
+            if (xhttp.responseText == 2) {
+              //usuario YA existe
+              console.log('Usuario Ya Registrado');
+              showToastWithGravity('Usuario Ya Registrado');
+            }
+          }
+        };
+        xhttp.open(
+          //Register.php?name=Pepe&code=0000000002&pass=pepe123&tel=1010101010&mail=pepe.furry@gmail.com&school=cucea&semester=segundo
+          'GET',
+          'https://spoiledragon.000webhostapp.com/Register.php?name=' +
+            this.state.iname +
+            '&code=' +
+            this.state.icode +
+            '&pass=' +
+            this.state.ipassword +
+            '&tel=' +
+            this.state.itelephone +
+            '&mail=' +
+            this.state.imail +
+            '&school=' +
+            this.state.ischool +
+            '&semester=' +
+            this.state.isemester,
+        );
+        console.log(
+          'https://spoiledragon.000webhostapp.com/Register.php?name=' +
+            this.state.iname +
+            '&code=' +
+            this.state.icode +
+            '&pass=' +
+            this.state.ipassword +
+            '&tel=' +
+            this.state.itelephone +
+            '&mail=' +
+            this.state.imail +
+            '&school=' +
+            this.state.ischool +
+            '&semester=' +
+            this.state.isemester,
+        );
+        xhttp.send();
+        navigation.navigate('Login');
+        
+      } else {
+        showToastWithGravity("Faltan Campos por llenar");
+      }
     };
 
     const showToastWithGravity = mensaje => {
@@ -181,8 +235,6 @@ export default class Registro extends Component {
               </View>
 
               <View style={styles.inputs}>
-
-
                 <Input
                   onChangeText={isemester => this.setState({isemester})}
                   placeholder="Semester"
@@ -194,7 +246,6 @@ export default class Registro extends Component {
 
               <View>
                 <Button
-                
                   title="Register"
                   icon={{
                     name: 'post-add',
@@ -268,5 +319,5 @@ const styles = StyleSheet.create({
   spacer: {
     marginTop: 30,
   },
-  placeholderStyle: { fontSize: 16 },
+  placeholderStyle: {fontSize: 16},
 });
