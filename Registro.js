@@ -10,9 +10,10 @@ import {
   SafeAreaView,
   ScrollView,
   ToastAndroid,
+
 } from 'react-native';
 
-import {Input, Icon, Button, Divider} from 'react-native-elements';
+import {Input, Icon, Button,Picker} from 'react-native-elements';
 export default class Registro extends Component {
   constructor(props) {
     super(props);
@@ -37,6 +38,7 @@ export default class Registro extends Component {
         this.state.imail,
         this.state.ischool,
         this.state.isemester,
+        
       );
       var xhttp = new XMLHttpRequest();
 
@@ -59,7 +61,7 @@ export default class Registro extends Component {
           if (xhttp.responseText == 2) {
             //usuario YA existe
             console.log('Usuario Ya Registrado');
-            showToastWithGravity("Usuario Ya Registrado");
+            showToastWithGravity('Usuario Ya Registrado');
           }
         }
       };
@@ -100,7 +102,7 @@ export default class Registro extends Component {
       xhttp.send();
     };
 
-    const showToastWithGravity = (mensaje) => {
+    const showToastWithGravity = mensaje => {
       ToastAndroid.showWithGravity(
         mensaje,
         ToastAndroid.SHORT,
@@ -120,7 +122,9 @@ export default class Registro extends Component {
                 <Input
                   onChangeText={iname => this.setState({iname})}
                   placeholder="Name"
+                  label="Name"
                   inputStyle={{color: 'white'}}
+                  ref={this.iname}
                   leftIcon={<Icon name="person" size={30} color="white" />}
                 />
               </View>
@@ -128,14 +132,17 @@ export default class Registro extends Component {
                 <Input
                   onChangeText={icode => this.setState({icode})}
                   placeholder="Code"
+                  label="Code"
                   inputStyle={{color: 'white'}}
                   keyboardType="number-pad"
+                  ref={this.icode}
                   leftIcon={<Icon name="code" size={30} color="white" />}
                 />
               </View>
               <View style={styles.inputs}>
                 <Input
                   onChangeText={ipassword => this.setState({ipassword})}
+                  label="Password"
                   placeholder="Password"
                   inputStyle={{color: 'white'}}
                   secureTextEntry={true}
@@ -144,8 +151,10 @@ export default class Registro extends Component {
               </View>
               <View style={styles.inputs}>
                 <Input
+                  id="telefono"
                   onChangeText={itelephone => this.setState({itelephone})}
                   placeholder="Telephone"
+                  label="Telephone"
                   inputStyle={{color: 'white'}}
                   keyboardType="number-pad"
                   leftIcon={<Icon name="phone" size={30} color="white" />}
@@ -155,6 +164,8 @@ export default class Registro extends Component {
                 <Input
                   onChangeText={imail => this.setState({imail})}
                   placeholder="Mail"
+                  label="Mail"
+                  keyboardType="email-address"
                   inputStyle={{color: 'white'}}
                   leftIcon={<Icon name="mail" size={30} color="white" />}
                 />
@@ -163,15 +174,19 @@ export default class Registro extends Component {
                 <Input
                   onChangeText={ischool => this.setState({ischool})}
                   placeholder="School"
+                  label="School"
                   inputStyle={{color: 'white'}}
                   leftIcon={<Icon name="school" size={30} color="white" />}
                 />
               </View>
 
               <View style={styles.inputs}>
+
+
                 <Input
                   onChangeText={isemester => this.setState({isemester})}
                   placeholder="Semester"
+                  label="Semester"
                   inputStyle={{color: 'white'}}
                   leftIcon={<Icon name="grade" size={30} color="white" />}
                 />
@@ -179,6 +194,7 @@ export default class Registro extends Component {
 
               <View>
                 <Button
+                
                   title="Register"
                   icon={{
                     name: 'post-add',
@@ -249,7 +265,8 @@ const styles = StyleSheet.create({
   trans: {
     backgroundColor: 'rgba(10,0,0,.5)',
   },
-  spacer:{
-    marginTop:30,
-  }
+  spacer: {
+    marginTop: 30,
+  },
+  placeholderStyle: { fontSize: 16 },
 });
