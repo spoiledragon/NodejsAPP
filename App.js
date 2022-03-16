@@ -25,7 +25,8 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import VENTANA1 from './Menu';
+//esta es la que selecciona cual es la ventana principal
+import VENTANA1 from './Main';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
